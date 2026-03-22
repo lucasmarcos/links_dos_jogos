@@ -25,7 +25,7 @@ async function gerarHtml() {
     const text = await file.text();
     const rawLinks = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
-    console.log(`🔍 Buscando títulos para ${rawLinks.length} links...`);
+    console.log(`Buscando titulos para ${rawLinks.length} links...`);
 
     const linksData = await Promise.all(rawLinks.map(async (link) => {
       const url = link.startsWith('http') ? link : `https://${link}`;
@@ -54,10 +54,10 @@ async function gerarHtml() {
     });
 
     await Bun.write(outputFile, finalHtml);
-    console.log(`✅ Sucesso! O arquivo '${outputFile}' foi gerado.`);
+    console.log(`Sucesso! O arquivo '${outputFile}' foi gerado.`);
 
   } catch (error) {
-    console.error("❌ Erro:", error.message);
+    console.error("Erro:", error.message);
   }
 }
 
