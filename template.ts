@@ -1,6 +1,20 @@
-import { html } from './tags.js';
+import { html } from "./tags";
 
-export const getTemplate = ({ styles, linksHtml, year, author }) => html`
+type TemplateProps = {
+  styles: string;
+  linksHtml: string;
+  year: number;
+  author: string;
+};
+
+type GameCardProps = {
+  url: string;
+  faviconUrl: string;
+  nome: string;
+  original: string;
+};
+
+export const getTemplate = ({ styles, linksHtml, year, author }: TemplateProps): string => html`
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,7 +41,7 @@ export const getTemplate = ({ styles, linksHtml, year, author }) => html`
 </html>
 `;
 
-export const getGameCard = ({ url, faviconUrl, nome, original }) => html`
+export const getGameCard = ({ url, faviconUrl, nome, original }: GameCardProps): string => html`
 <a href="${url}" class="game-card" target="_blank">
     <img src="${faviconUrl}" class="favicon" alt="">
     <div class="info">

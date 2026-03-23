@@ -6,12 +6,30 @@ Adicione links de jogos ao `jogos.txt`, um por linha.
 
 ## Requisitos
 
-- [Bun](https://bun.sh) é necessário para rodar o script
+- [Bun](https://bun.sh)
+
+## Instalar dependencias
+
+```bash
+bun install
+```
 
 ## Como usar
 
 ```bash
-bun run gerar_html.js
+bun run gerar_html.ts
+```
+
+Ou pelo script configurado:
+
+```bash
+bun run generate
+```
+
+## Validar TypeScript
+
+```bash
+bun run build
 ```
 
 Isso gera o `index.html` a partir dos jogos listados em `jogos.txt`.

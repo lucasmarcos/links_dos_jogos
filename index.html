@@ -1,8 +1,14 @@
-import { css } from './tags.js';
 
-export const getStyles = (brandBlue) => css`
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa da Paz - Lista de Jogos</title>
+    <style>
+        
   :root {
-      --primary: ${brandBlue};
+      --primary: #1e3a8a;
       --bg: #f1f5f9;
       --card-bg: #ffffff;
       --card-border: #e2e8f0;
@@ -149,4 +155,46 @@ export const getStyles = (brandBlue) => css`
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
   }
-`;
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="emoji-header">🎮</div>
+        <h1>Casa da Paz</h1>
+        <p>Links para Jogos Online</p>
+    </header>
+    <main class="container">
+        
+<a href="https://smashkarts.io" class="game-card" target="_blank">
+    <img src="https://www.google.com/s2/favicons?domain=smashkarts.io&sz=64" class="favicon" alt="">
+    <div class="info">
+        <h2>smashkarts</h2>
+        <span>smashkarts.io</span>
+    </div>
+</a>
+
+
+<a href="https://bloxd.io" class="game-card" target="_blank">
+    <img src="https://www.google.com/s2/favicons?domain=bloxd.io&sz=64" class="favicon" alt="">
+    <div class="info">
+        <h2>bloxd</h2>
+        <span>bloxd.io</span>
+    </div>
+</a>
+
+
+<a href="https://shellshock.io" class="game-card" target="_blank">
+    <img src="https://www.google.com/s2/favicons?domain=shellshock.io&sz=64" class="favicon" alt="">
+    <div class="info">
+        <h2>shellshock</h2>
+        <span>shellshock.io</span>
+    </div>
+</a>
+
+    </main>
+    <footer>
+        &copy; 2026 Lucas da Silva Marcos
+    </footer>
+</body>
+</html>
