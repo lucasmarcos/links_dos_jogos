@@ -1,5 +1,5 @@
 import { getStyles } from "./styles";
-import { getTemplate, getGameCard } from "./template";
+import { getGameCard, getTemplate } from "./template";
 
 type LinkData = {
   url: string;
@@ -11,12 +11,13 @@ async function getPageTitle(url: string): Promise<string | null> {
   try {
     const response = await fetch(url, {
       headers: { "User-Agent": "Mozilla/5.0" },
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(5000),
     });
     const text = await response.text();
     const match = text.match(/<title>(.*?)<\/title>/i);
     return match ? match[1].trim() : null;
   } catch (e) {
+    console.log(`Erro: ${e}`);
     return null;
   }
 }
@@ -43,9 +44,9 @@ async function gerarHtml(): Promise<void> {
         return {
           url,
           nome: title || link.split(".")[0],
-          original: link
+          original: link,
         };
-      })
+      }),
     );
 
     const brandBlue = "#1e3a8a";
@@ -57,13 +58,13 @@ async function gerarHtml(): Promise<void> {
         const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
         return getGameCard({ ...item, faviconUrl });
       })
-      .join("\n");
+      .join("");
 
     const finalHtml = getTemplate({
       styles,
       linksHtml,
       year: new Date().getFullYear(),
-      author
+      author,
     });
 
     await Bun.write(outputFile, finalHtml);
