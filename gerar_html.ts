@@ -16,8 +16,9 @@ async function getPageTitle(url: string): Promise<string | null> {
     const text = await response.text();
     const match = text.match(/<title>(.*?)<\/title>/i);
     return match ? match[1].trim() : null;
-  } catch (e) {
-    console.log(`Erro: ${e}`);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.log(`Erro: ${message}`);
     return null;
   }
 }
