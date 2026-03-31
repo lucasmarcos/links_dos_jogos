@@ -70,7 +70,7 @@ async function gerarHtml(): Promise<void> {
     console.log(`Sucesso! O arquivo '${outputFile}' foi gerado.`);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error("Erro:", message);
+    console.error("Erro: ", message);
   }
 }
 
