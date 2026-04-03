@@ -9,10 +9,13 @@ type LinkData = {
   favicon: string | null;
 };
 
+function withHttps(url: string): string {
+  return url.startsWith("http") ? url : `https://${url}`;
+}
+
 async function getPageTitle(url: string): Promise<string | null> {
-  const fetchUrl = url.startsWith("http") ? url : `https://${url}`;
   try {
-    const response = await fetch(fetchUrl, {
+    const response = await fetch(url, {
       headers: { "User-Agent": config.userAgent },
       signal: AbortSignal.timeout(config.fetchTimeout),
     });
@@ -55,9 +58,7 @@ async function gerarHtml(): Promise<void> {
     const linksData: LinkData[] = await Promise.all(
       rawLinks.map(async (link: string) => {
         const { url: parsedUrl, favicon, title: manualTitle } = parseLink(link);
-        const url = parsedUrl.startsWith("http")
-          ? parsedUrl
-          : `https://${parsedUrl}`;
+        const url = withHttps(parsedUrl);
         const fetchedTitle = manualTitle || (await getPageTitle(url));
 
         return {
@@ -74,9 +75,7 @@ async function gerarHtml(): Promise<void> {
       .map((item) => {
         const domain = item.url.replace(/^https?:\/\//, "").split("/")[0];
         const faviconUrl = item.favicon
-          ? item.favicon.startsWith("http")
-            ? item.favicon
-            : `https://${item.favicon}`
+          ? withHttps(item.favicon)
           : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
         return getGameCard({ ...item, faviconUrl });
       })
