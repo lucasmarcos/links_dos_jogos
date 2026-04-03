@@ -34,14 +34,12 @@ function parseLink(link: string): {
   favicon: string | null;
   title: string | null;
 } {
-  const pipeCount = (link.match(/\|/g) || []).length;
-  if (pipeCount === 0) return { url: link, favicon: null, title: null };
-  if (pipeCount === 1) {
-    const [url, favicon] = link.split("|");
-    return { url, favicon, title: null };
-  }
-  const [url, favicon, ...rest] = link.split("|");
-  return { url, favicon, title: rest.join("|") };
+  const parts = link.split("|");
+  return {
+    url: parts[0],
+    favicon: parts[1] ?? null,
+    title: parts.slice(2).join("|") || null,
+  };
 }
 
 async function gerarHtml(): Promise<void> {
