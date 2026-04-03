@@ -4,6 +4,15 @@ Pagina com links de jogos educativos para criancas da turma de informatica da Ca
 
 Adicione links de jogos ao `jogos.txt`, um por linha.
 
+### Formato
+
+```
+url                         → título e favicon automáticos
+url|favicon                 → favicon manual
+url||title                  → título manual
+url|favicon|title           → ambos manual
+```
+
 ## Requisitos
 
 - [Bun](https://bun.sh)
@@ -17,19 +26,23 @@ bun install
 ## Como usar
 
 ```bash
-bun run gerar_html.ts
+bun run generate
 ```
 
-Ou pelo script configurado:
-
 ```bash
-bun run generate
+bun run buildcss
 ```
 
 ## Validar TypeScript
 
 ```bash
-bun run build
+bun run typecheck
+```
+
+## Executar Biome
+
+```bash
+bun run lint
 ```
 
 Isso gera o `index.html` a partir dos jogos listados em `jogos.txt`.
