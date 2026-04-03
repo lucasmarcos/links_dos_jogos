@@ -7,5 +7,4 @@ export const config = {
   author: "Lucas da Silva Marcos",
   userAgent: "Mozilla/5.0",
   fetchTimeout: 5000,
-  brandBlue: "#1e3a8a",
 };

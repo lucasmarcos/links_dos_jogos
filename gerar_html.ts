@@ -1,5 +1,4 @@
 import { config } from "./config.js";
-import { getStyles } from "./styles.js";
 import { getGameCard, getTemplate } from "./template.js";
 
 type LinkData = {
@@ -47,8 +46,6 @@ async function gerarHtml(): Promise<void> {
       }),
     );
 
-    const styles = getStyles(config.brandBlue);
-
     const linksHtml = linksData
       .map((item) => {
         const domain = item.original.replace(/^https?:\/\//, "").split("/")[0];
@@ -58,7 +55,6 @@ async function gerarHtml(): Promise<void> {
       .join("");
 
     const finalHtml = getTemplate({
-      styles,
       linksHtml,
       year: new Date().getFullYear(),
       author: config.author,

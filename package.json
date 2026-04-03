@@ -5,11 +5,15 @@
   "scripts": {
     "generate": "bun run gerar_html.ts",
     "lint": "biome check *.ts package.json tsconfig.json biome.json",
-    "typecheck": "tsgo"
+    "typecheck": "tsgo",
+    "buildcss": "tailwindcss -i input.css -o output.css"
   },
   "devDependencies": {
     "@types/bun": "^1.3.11",
     "@biomejs/biome": "^2.4.10",
     "@typescript/native-preview": "^7.0.0-dev.20260403.1"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2"
   }
 }
