@@ -4,3 +4,10 @@ shellshock.io
 diep.io
 holeio.com
 vectaria.io
+skribbl.io
+slither.io
+krunker.io
+paper-io.com
+taming.io
+moomoo.io
+surviv.io

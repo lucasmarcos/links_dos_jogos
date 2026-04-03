@@ -36,13 +36,13 @@ export const getTemplate = ({
   linksHtml,
   year,
   author,
-}: TemplateProps): string => html`<!DOCTYPE html>
+}: TemplateProps): string => html`<!doctype html>
 <html lang="${config.lang}">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${config.siteName} - ${config.siteDesc}</title>
-  <link href="output.css" rel="stylesheet">
+  <link href="${config.cssOutput}" rel="stylesheet">
 </head>
 <body class="${bodyCls}">
   <header class="${headerCls}">

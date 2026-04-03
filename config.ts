@@ -1,6 +1,7 @@
 export const config = {
   inputFile: "jogos.txt",
   outputFile: "index.html",
+  cssOutput: "output.css",
   siteName: "Casa da Paz",
   siteDesc: "Lista de Jogos",
   subtitle: "Links para Jogos Online",
