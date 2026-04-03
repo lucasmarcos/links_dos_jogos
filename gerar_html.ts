@@ -1,3 +1,4 @@
+import { config } from "./config.js";
 import { getStyles } from "./styles.js";
 import { getGameCard, getTemplate } from "./template.js";
 
@@ -10,8 +11,8 @@ type LinkData = {
 async function getPageTitle(url: string): Promise<string | null> {
   try {
     const response = await fetch(url, {
-      headers: { "User-Agent": "Mozilla/5.0" },
-      signal: AbortSignal.timeout(5000),
+      headers: { "User-Agent": config.userAgent },
+      signal: AbortSignal.timeout(config.fetchTimeout),
     });
     const text = await response.text();
     const match = text.match(/<title>(.*?)<\/title>/i);
@@ -24,12 +25,8 @@ async function getPageTitle(url: string): Promise<string | null> {
 }
 
 async function gerarHtml(): Promise<void> {
-  const inputFile = "jogos.txt";
-  const outputFile = "index.html";
-  const author = "Lucas da Silva Marcos";
-
   try {
-    const file = Bun.file(inputFile);
+    const file = Bun.file(config.inputFile);
     const text = await file.text();
     const rawLinks = text
       .split("\n")
@@ -50,8 +47,7 @@ async function gerarHtml(): Promise<void> {
       }),
     );
 
-    const brandBlue = "#1e3a8a";
-    const styles = getStyles(brandBlue);
+    const styles = getStyles(config.brandBlue);
 
     const linksHtml = linksData
       .map((item) => {
@@ -65,11 +61,11 @@ async function gerarHtml(): Promise<void> {
       styles,
       linksHtml,
       year: new Date().getFullYear(),
-      author,
+      author: config.author,
     });
 
-    await Bun.write(outputFile, finalHtml);
-    console.log(`Sucesso! O arquivo '${outputFile}' foi gerado.`);
+    await Bun.write(config.outputFile, finalHtml);
+    console.log(`Sucesso! O arquivo '${config.outputFile}' foi gerado.`);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error("Erro: ", message);

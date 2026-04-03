@@ -1,3 +1,4 @@
+import { config } from "./config.js";
 import { html } from "./tags.js";
 
 type TemplateProps = {
@@ -20,11 +21,11 @@ export const getTemplate = ({
   year,
   author,
 }: TemplateProps): string => html`<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="${config.lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa da Paz - Lista de Jogos</title>
+  <title>${config.siteName} - Lista de Jogos</title>
   <style>
     ${styles}
   </style>
@@ -32,8 +33,8 @@ export const getTemplate = ({
 <body>
   <header>
     <div class="emoji-header">🎮</div>
-    <h1>Casa da Paz</h1>
-    <p>Links para Jogos Online</p>
+    <h1>${config.siteName}</h1>
+    <p>${config.subtitle}</p>
   </header>
   <main class="container">
     ${linksHtml}
