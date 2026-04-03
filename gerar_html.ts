@@ -9,8 +9,9 @@ type LinkData = {
 };
 
 async function getPageTitle(url: string): Promise<string | null> {
+  const fetchUrl = url.startsWith("http") ? url : `https://${url}`;
   try {
-    const response = await fetch(url, {
+    const response = await fetch(fetchUrl, {
       headers: { "User-Agent": config.userAgent },
       signal: AbortSignal.timeout(config.fetchTimeout),
     });
@@ -62,9 +63,7 @@ async function gerarHtml(): Promise<void> {
     const linksData: LinkData[] = await Promise.all(
       rawLinks.map(async (link: string) => {
         const { url: parsedUrl, favicon, title: manualTitle } = parseLink(link);
-        const url = parsedUrl.startsWith("http")
-          ? parsedUrl
-          : `https://${parsedUrl}`;
+        const url = parsedUrl.startsWith("http") ? parsedUrl : parsedUrl;
         const fetchedTitle = manualTitle || (await getPageTitle(url));
 
         return {
