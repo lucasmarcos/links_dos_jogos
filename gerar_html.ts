@@ -1,5 +1,5 @@
-import { getStyles } from "./styles";
-import { getGameCard, getTemplate } from "./template";
+import { getStyles } from "./styles.js";
+import { getGameCard, getTemplate } from "./template.js";
 
 type LinkData = {
   url: string;
@@ -33,13 +33,13 @@ async function gerarHtml(): Promise<void> {
     const text = await file.text();
     const rawLinks = text
       .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => line.length > 0);
+      .map((line: string) => line.trim())
+      .filter((line: string) => line.length > 0);
 
     console.log(`Buscando titulos para ${rawLinks.length} links...`);
 
     const linksData: LinkData[] = await Promise.all(
-      rawLinks.map(async (link) => {
+      rawLinks.map(async (link: string) => {
         const url = link.startsWith("http") ? link : `https://${link}`;
         const title = await getPageTitle(url);
         return {

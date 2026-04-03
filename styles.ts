@@ -1,4 +1,4 @@
-import { css } from "./tags";
+import { css } from "./tags.js";
 
 export const getStyles = (brandBlue: string): string => css`
   :root {

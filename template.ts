@@ -1,4 +1,4 @@
-import { html } from "./tags";
+import { html } from "./tags.js";
 
 type TemplateProps = {
   styles: string;

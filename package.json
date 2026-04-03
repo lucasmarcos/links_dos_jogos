@@ -3,13 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --noEmit",
     "generate": "bun run gerar_html.ts",
-    "start": "bun run gerar_html.ts"
+    "lint": "biome check *.ts package.json tsconfig.json biome.json",
+    "typecheck": "tsgo"
   },
   "devDependencies": {
     "@types/bun": "^1.3.11",
-    "typescript": "^5.9.2",
-    "@biomejs/biome": "^2.4.10"
+    "@biomejs/biome": "^2.4.10",
+    "@typescript/native-preview": "^7.0.0-dev.20260403.1"
   }
 }
