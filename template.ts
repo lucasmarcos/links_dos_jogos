@@ -9,9 +9,9 @@ type TemplateProps = {
 
 type GameCardProps = {
   url: string;
+  displayUrl: string;
   faviconUrl: string;
   nome: string;
-  displayUrl: string;
 };
 
 const bodyCls =
@@ -63,9 +63,9 @@ export const getTemplate = ({
 
 export const getGameCard = ({
   url,
+  displayUrl,
   faviconUrl,
   nome,
-  displayUrl,
 }: GameCardProps): string => html`
 <a href="${url}" class="${cardCls}" target="_blank">
   <img src="${faviconUrl}" class="${faviconCls}" alt="">

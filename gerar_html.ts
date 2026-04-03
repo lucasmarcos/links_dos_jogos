@@ -3,6 +3,7 @@ import { getGameCard, getTemplate } from "./template.js";
 
 type LinkData = {
   url: string;
+  displayUrl: string;
   nome: string;
   original: string;
   favicon: string | null;
@@ -63,11 +64,14 @@ async function gerarHtml(): Promise<void> {
     const linksData: LinkData[] = await Promise.all(
       rawLinks.map(async (link: string) => {
         const { url: parsedUrl, favicon, title: manualTitle } = parseLink(link);
-        const url = parsedUrl.startsWith("http") ? parsedUrl : parsedUrl;
+        const url = parsedUrl.startsWith("http")
+          ? parsedUrl
+          : `https://${parsedUrl}`;
         const fetchedTitle = manualTitle || (await getPageTitle(url));
 
         return {
           url,
+          displayUrl: parsedUrl,
           nome: fetchedTitle || parsedUrl.split(".")[0],
           original: link,
           favicon,
@@ -83,7 +87,7 @@ async function gerarHtml(): Promise<void> {
             ? item.favicon
             : `https://${item.favicon}`
           : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-        return getGameCard({ ...item, faviconUrl, displayUrl: item.url });
+        return getGameCard({ ...item, faviconUrl });
       })
       .join("");
 
