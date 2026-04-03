@@ -1,3 +1,5 @@
+poki.com
+kongregate.com
 smashkarts.io
 bloxd.io
 shellshock.io
@@ -7,7 +9,6 @@ vectaria.io
 skribbl.io
 slither.io
 krunker.io
-paper-io.com
+games.voodoo.io/paperio2|games.voodoo.io/paperio2/favicon.ico
 taming.io
-moomoo.io
-surviv.io
+moomoo.io||Moo Moo

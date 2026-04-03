@@ -5,6 +5,7 @@ type LinkData = {
   url: string;
   nome: string;
   original: string;
+  favicon: string | null;
 };
 
 async function getPageTitle(url: string): Promise<string | null> {
@@ -23,6 +24,30 @@ async function getPageTitle(url: string): Promise<string | null> {
   }
 }
 
+function parseLink(link: string): {
+  url: string;
+  favicon: string | null;
+  title: string | null;
+} {
+  let url = link;
+  let favicon: string | null = null;
+  let title: string | null = null;
+
+  if (link.includes("||")) {
+    const parts = link.split("||");
+    url = parts[0];
+    title = parts[1].trim();
+  }
+
+  if (url.includes("|") && !url.includes("||")) {
+    const urlParts = url.split("|");
+    url = urlParts[0];
+    favicon = urlParts[1];
+  }
+
+  return { url, favicon, title };
+}
+
 async function gerarHtml(): Promise<void> {
   try {
     const file = Bun.file(config.inputFile);
@@ -36,21 +61,30 @@ async function gerarHtml(): Promise<void> {
 
     const linksData: LinkData[] = await Promise.all(
       rawLinks.map(async (link: string) => {
-        const url = link.startsWith("http") ? link : `https://${link}`;
-        const title = await getPageTitle(url);
+        const { url: parsedUrl, favicon, title: manualTitle } = parseLink(link);
+        const url = parsedUrl.startsWith("http")
+          ? parsedUrl
+          : `https://${parsedUrl}`;
+        const fetchedTitle = manualTitle || (await getPageTitle(url));
+
         return {
           url,
-          nome: title || link.split(".")[0],
+          nome: fetchedTitle || parsedUrl.split(".")[0],
           original: link,
+          favicon,
         };
       }),
     );
 
     const linksHtml = linksData
       .map((item) => {
-        const domain = item.original.replace(/^https?:\/\//, "").split("/")[0];
-        const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-        return getGameCard({ ...item, faviconUrl });
+        const domain = item.url.replace(/^https?:\/\//, "").split("/")[0];
+        const faviconUrl = item.favicon
+          ? item.favicon.startsWith("http")
+            ? item.favicon
+            : `https://${item.favicon}`
+          : `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+        return getGameCard({ ...item, faviconUrl, displayUrl: item.url });
       })
       .join("");
 

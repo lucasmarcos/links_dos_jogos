@@ -11,7 +11,7 @@ type GameCardProps = {
   url: string;
   faviconUrl: string;
   nome: string;
-  original: string;
+  displayUrl: string;
 };
 
 const bodyCls =
@@ -43,6 +43,7 @@ export const getTemplate = ({
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${config.siteName} - ${config.siteDesc}</title>
   <link href="${config.cssOutput}" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body class="${bodyCls}">
   <header class="${headerCls}">
@@ -64,13 +65,13 @@ export const getGameCard = ({
   url,
   faviconUrl,
   nome,
-  original,
+  displayUrl,
 }: GameCardProps): string => html`
 <a href="${url}" class="${cardCls}" target="_blank">
   <img src="${faviconUrl}" class="${faviconCls}" alt="">
   <div class="${cardInfoCls}">
     <h2 class="${cardNameCls}">${nome}</h2>
-    <span class="${cardUrlCls}">${original}</span>
+    <span class="${cardUrlCls}">${displayUrl}</span>
   </div>
 </a>
 `;
