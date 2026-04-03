@@ -9,6 +9,8 @@ export const getStyles = (brandBlue: string): string => css`
     --text: #0f172a;
     --text-muted: #475569;
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --favicon-bg: #ffffff;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -20,6 +22,8 @@ export const getStyles = (brandBlue: string): string => css`
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+      --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+      --favicon-bg: #0f172a;
     }
   }
 
@@ -94,14 +98,14 @@ export const getStyles = (brandBlue: string): string => css`
   .game-card:hover {
     transform: translateY(-4px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-hover);
   }
 
   .favicon {
     width: 32px;
     height: 32px;
     border-radius: 6px;
-    background: white;
+    background: var(--favicon-bg);
     flex-shrink: 0;
   }
 
