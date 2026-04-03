@@ -31,23 +31,14 @@ function parseLink(link: string): {
   favicon: string | null;
   title: string | null;
 } {
-  let url = link;
-  let favicon: string | null = null;
-  let title: string | null = null;
-
-  if (link.includes("||")) {
-    const parts = link.split("||");
-    url = parts[0];
-    title = parts[1].trim();
+  const pipeCount = (link.match(/\|/g) || []).length;
+  if (pipeCount === 0) return { url: link, favicon: null, title: null };
+  if (pipeCount === 1) {
+    const [url, favicon] = link.split("|");
+    return { url, favicon, title: null };
   }
-
-  if (url.includes("|") && !url.includes("||")) {
-    const urlParts = url.split("|");
-    url = urlParts[0];
-    favicon = urlParts[1];
-  }
-
-  return { url, favicon, title };
+  const [url, favicon, ...rest] = link.split("|");
+  return { url, favicon, title: rest.join("|") };
 }
 
 async function gerarHtml(): Promise<void> {
