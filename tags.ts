@@ -16,10 +16,3 @@ export function html(
 ): string {
   return renderTemplate(strings, values);
 }
-
-export function css(
-  strings: TemplateStringsArray,
-  ...values: TemplateValue[]
-): string {
-  return renderTemplate(strings, values);
-}

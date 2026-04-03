@@ -14,21 +14,6 @@ type GameCardProps = {
   original: string;
 };
 
-const animKeyframes = `
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-`;
-
 export const getTemplate = ({
   linksHtml,
   year,
@@ -39,16 +24,15 @@ export const getTemplate = ({
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${config.siteName} - Lista de Jogos</title>
-  <style>${animKeyframes}</style>
   <link href="output.css" rel="stylesheet">
 </head>
 <body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-50 font-sans m-0 px-4 py-8 flex flex-col items-center min-h-screen transition-colors duration-300">
-  <header class="text-center mb-12 animate-[fadeInDown_0.8s_ease-out]">
-    <div class="text-6xl mb-2 inline-block animate-[float_3s_ease-in-out_infinite]">🎮</div>
+  <header class="text-center mb-12">
+    <div class="text-6xl mb-2 inline-block animate-bounce">🎮</div>
     <h1 class="text-[2.5rem] text-blue-900 dark:text-blue-400 m-0 font-extrabold tracking-tight">${config.siteName}</h1>
     <p class="mt-2 text-[1.1rem] text-slate-600 dark:text-slate-400">${config.subtitle}</p>
   </header>
-  <main class="flex flex-col gap-3 w-full max-w-[500px] animate-[fadeInUp_0.8s_ease-out]">
+  <main class="flex flex-col gap-3 w-full max-w-[500px]">
     ${linksHtml}
   </main>
   <footer class="mt-16 text-sm text-slate-500 dark:text-slate-400 text-center">
