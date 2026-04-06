@@ -1,8 +1,8 @@
-poki.com
-kongregate.com
+poki.com||Poki
+kongregate.com||Kongregate
 smashkarts.io
-bloxd.io
-shellshock.io
+bloxd.io||Bloxd.io
+shellshock.io||Shell Shockers
 diep.io
 holeio.com
 vectaria.io
