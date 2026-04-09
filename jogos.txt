@@ -2,6 +2,8 @@ poki.com||Poki
 kongregate.com||Kongregate
 smashkarts.io
 bloxd.io||Bloxd.io
+kogama.com.br
+jamango.io
 shellshock.io||Shell Shockers
 diep.io
 holeio.com
