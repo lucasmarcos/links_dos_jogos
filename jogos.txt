@@ -14,3 +14,4 @@ krunker.io
 games.voodoo.io/paperio2|games.voodoo.io/paperio2/favicon.ico
 taming.io
 moomoo.io||Moo Moo
+coquinhos.com
